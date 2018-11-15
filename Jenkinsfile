@@ -6,5 +6,41 @@ pipeline {
                 sh 'python --version'
             }
         }
+
+        post {
+                always {
+                    echo 'One way or another, I have finished'
+                    /* deleteDir()  clean up our workspace */
+                }
+                success {
+                    echo 'I succeeeded!'
+                    mail to: 'jschuetze@truckitapp.com',
+                    subject: "Jenkins run status \"SUCCESS\" for:  ${currentBuild.fullDisplayName}",
+                    body: "jenkins run ${env.BUILD_URL} succeeded"
+                }
+                unstable {
+                    echo 'Unstable Pipeline'
+                    mail to: 'jschuetze@truckitapp.com',
+                    subject: "Jenkins run status \"UNSTABLE\" for:  ${currentBuild.fullDisplayName}",
+                    body: "jenkins run ${env.BUILD_URL} unstable"
+                }
+                failure {
+                    echo 'Failed jenkins run'
+                    mail to: 'jschuetze@truckitapp.com',
+                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
+                }
+                changed {
+                    echo 'Pipeline status change'
+                    mail to: 'jschuetze@truckitapp.com',
+                    subject: "Changed Status for Pipeline: ${currentBuild.fullDisplayName}",
+                    body: "Status of Pipeline changed ${env.BUILD_URL}"
+                }
+            }
+
+
+
+
+
     }
 }
