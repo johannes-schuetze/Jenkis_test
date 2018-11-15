@@ -4,7 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
-            }
+                  }
+              }
         }
 
         post {
@@ -38,9 +39,4 @@ pipeline {
                 }
             }
 
-
-
-
-
-    }
-}
+          }
