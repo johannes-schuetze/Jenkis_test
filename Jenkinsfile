@@ -8,11 +8,11 @@ pipeline {
               }
         }
 
-        post {
+/*        post {
                 always {
                     echo 'One way or another, I have finished'
                     /* deleteDir()  clean up our workspace */
-                }
+/*                }
                 success {
                     echo 'I succeeeded!'
                     mail to: 'jschuetze@truckitapp.com',
@@ -37,6 +37,6 @@ pipeline {
                     subject: "Changed Status for Pipeline: ${currentBuild.fullDisplayName}",
                     body: "Status of Pipeline changed ${env.BUILD_URL}"
                 }
-            }
+            }*/
 
           }
