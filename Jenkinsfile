@@ -6,6 +6,7 @@ pipeline {
       stage('pre-build') {
           steps {
               echo 'Building environment'
+              sh 'apt-get install curl python-all python-pip wget git libmysqlclient-dev rabbitmq-server python-dev nginx nodejs npm libmagickwand-dev tesseract-ocr libffi-dev'
                 }
             }
 
